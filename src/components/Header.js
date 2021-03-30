@@ -4,7 +4,7 @@ import logo from '../images/logo.png'
 import { SearchIcon } from '@chakra-ui/icons'
 import { FiShoppingCart } from 'react-icons/fi';
 import { IconContext } from "react-icons";
-import { extendTheme, Button, Box } from "@chakra-ui/react"
+import { extendTheme, Button } from "@chakra-ui/react"
 import { ChakraProvider } from "@chakra-ui/react"
 
 

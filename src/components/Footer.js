@@ -22,44 +22,73 @@ const FooterStyle = styled.footer`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     align-items: center;
+    justify-content: center;
     text-align: center;
     background-color: #F1BF63;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
 `;
 
 const ImgLogo = styled.img`
     background-color: #FFFCEF;
     border-radius: 50%;
-    width: 50%;
+    width: 55%;
+    margin: 0 auto;
     padding: 10px 12px;
     box-shadow: 2px 1.5px 5px gray;
+`;
+
+const Icons = styled.img`
+    width: 14%;
+    border-radius: 4px;
+    margin: 1.8px;
+`;
+
+const BankIcons = styled.img`
+    width: 10.2%;
+    border-radius: 4px;
+    margin: 1.8px;
 `;
 
 const Copyright = styled.div`
     background-color: #FFFCEF;
     grid-column: 1 / 6;
-    padding: 5px 0;
+    padding: 2px 0;
     color: #2E2E2E;
 `;
 
-const Lista = styled.li`
+const SectionContainer = styled.div`
+    height: 45vh;
+    width: 90%;
+    padding: 25px 0 20px 0;
+`;
+
+const PaymentContainer = styled.div`
+    display: flex;
+    width: 20vw;
+    flex-wrap: wrap;
+`;
+
+const SocialContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    width: 10vw;
+`;
+
+const List = styled.li`
     list-style: none;
     border-bottom: 1px solid #40A59B;
     width: 10vw;
 `;
 
-const ListaInstitucional = styled.ul`
+const InstitutionalList = styled.ul`
     padding: 0;
     text-align: left;
-    margin-left: 66px;
+    margin-left: 63px;
     line-height: 1.9;
     color: #2E2E2E;
 `;
 
-const ListaCategorias = styled.ul`
+const CategoryList = styled.ul`
     padding: 0;
     text-align: left;
     margin-left: 35px;
@@ -69,53 +98,27 @@ const ListaCategorias = styled.ul`
 
 const Link = styled.a`
     text-decoration: none;
-    color: inherit;
 `;
 
-const TituloSecoes = styled.p`
+const SocialLink = styled.a`
+    margin: 2px;
+`;
+
+const SectionTitles = styled.p`
     color: #FFFFFF;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     text-shadow: 2px 2px 2.5px gray;
+    margin-bottom: 10px;
 `;
 
-const SecoesContainer = styled.div`
-    height: 40vh;
-    width: 90%;
-    padding: 15px 0 25px 0;
-`;
-
-const Icones = styled.img`
-    width: 14%;
-    border-radius: 4px;
-    margin: 1.5px;
-`;
-
-const PagamentoContainer = styled.div`
-    display: flex;
-    width: 20vw;
-    flex-wrap: wrap;
-`;
-
-const IconesBanco = styled.img`
-    width: 10.2%;
-    border-radius: 4px;
-    margin: 1.5px;
-`;
-
-const IconesRedesSociais = styled.img`
-    width: 15%;
-    border-radius: 4px;
-    margin: 0 3px;
-`;
-
-const TituloCategoria = styled.p`
+const CategoryTitle = styled.p`
     color: #FFFFFF;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
     text-shadow: 2px 2px 2.5px gray;
     text-align: left;
-    margin-left: 33px;
+    margin: 0 0 10px 33px;
 `;
 
 export default class Footer extends React.Component {
@@ -128,56 +131,52 @@ export default class Footer extends React.Component {
                             <ImgLogo src={logo} alt="Logo da 4Used" class="img-logo-footer" />
                         </div>
                     </div>
-                    <SecoesContainer>
-                        <TituloSecoes>Institucional</TituloSecoes>
-                        <ListaInstitucional>
-                            <Link href="index.html" target="_blank"><Lista>Missão</Lista></Link>
-                            <Link href="index.html" target="_blank"><Lista>Visão</Lista></Link>
-                            <Link href="index.html" target="_blank"><Lista>Valores</Lista></Link>
-                            <Link href="index.html" target="_blank"><Lista>Compliance</Lista></Link>
-                        </ListaInstitucional>
-                    </SecoesContainer>
-                    <SecoesContainer>
-                        <TituloCategoria>Categorias</TituloCategoria>
-                        <ListaCategorias>
-                            <Link href="index.html" target="_blank"><Lista>Moda feminina</Lista></Link>
-                            <Link href="index.html" target="_blank"><Lista>Moda masculina</Lista></Link>
-                            <Link href="index.html" target="_blank"><Lista>Calçados</Lista></Link>
-                            <Link href="index.html" target="_blank"><Lista>Eletrônicos</Lista></Link>
-                            <Link href="index.html" target="_blank"><Lista>Decoração</Lista></Link>
-                            <Link href="index.html" target="_blank"><Lista>Móveis</Lista></Link>
-                        </ListaCategorias>
-                    </SecoesContainer>
-                    <SecoesContainer>
-                        <TituloSecoes>Formas de pagamento</TituloSecoes>
-                        <PagamentoContainer>
-                            <Icones src={master} alt="Logo da 4Used" class="img-logo-footer" />
-                            <Icones src={visa} alt="Logo da 4Used" class="img-logo-footer" />
-                            <Icones src={hipercard} alt="Logo da 4Used" class="img-logo-footer" />
-                            <Icones src={elo} alt="Logo da 4Used" class="img-logo-footer" />
-                            <Icones src={aura} alt="Logo da 4Used" class="img-logo-footer" />
-                            <Icones src={diners} alt="Logo da 4Used" class="img-logo-footer" />
-                            <Icones src={american} alt="Logo da 4Used" class="img-logo-footer" />
-                            <Icones src={paypal} alt="Logo da 4Used" class="img-logo-footer" />
-                            <Icones src={boleto} alt="Logo da 4Used" class="img-logo-footer" />
-                            <IconesBanco src={bb} alt="Logo da 4Used" class="img-logo-footer" />
-                            <IconesBanco src={bradesco} alt="Logo da 4Used" class="img-logo-footer" />
-                            <IconesBanco src={itau} alt="Logo da 4Used" class="img-logo-footer" />
-                            <IconesBanco src={santander} alt="Logo da 4Used" class="img-logo-footer" />
-                        </PagamentoContainer>
-                    </SecoesContainer>
-                    <SecoesContainer>
-                        <TituloSecoes>Segue aqui</TituloSecoes>
-                        <Link href="index.html" target="_blank">
-                            <IconesRedesSociais src={fb} alt="Logo da 4Used" class="img-logo-footer" />
-                        </Link>
-                        <Link href="index.html" target="_blank">
-                        <IconesRedesSociais src={twitter} alt="Logo da 4Used" class="img-logo-footer" />
-                        </Link>
-                        <Link href="index.html" target="_blank">
-                        <IconesRedesSociais src={insta} alt="Logo da 4Used" class="img-logo-footer" />
-                        </Link>
-                    </SecoesContainer>
+                    <SectionContainer>
+                        <SectionTitles>Institucional</SectionTitles>
+                        <InstitutionalList>
+                            <Link href="index.html" target="_blank"><List>Missão</List></Link>
+                            <Link href="index.html" target="_blank"><List>Visão</List></Link>
+                            <Link href="index.html" target="_blank"><List>Valores</List></Link>
+                            <Link href="index.html" target="_blank"><List>Compliance</List></Link>
+                        </InstitutionalList>
+                    </SectionContainer>
+                    <SectionContainer>
+                        <CategoryTitle>Categorias</CategoryTitle>
+                        <CategoryList>
+                            <Link href="index.html" target="_blank"><List>Moda feminina</List></Link>
+                            <Link href="index.html" target="_blank"><List>Moda masculina</List></Link>
+                            <Link href="index.html" target="_blank"><List>Calçados</List></Link>
+                            <Link href="index.html" target="_blank"><List>Eletrônicos</List></Link>
+                            <Link href="index.html" target="_blank"><List>Decoração</List></Link>
+                            <Link href="index.html" target="_blank"><List>Móveis</List></Link>
+                        </CategoryList>
+                    </SectionContainer>
+                    <SectionContainer>
+                        <SectionTitles>Formas de pagamento</SectionTitles>
+                        <PaymentContainer>
+                            <Icons src={master} alt="Logo da 4Used" class="img-logo-footer" />
+                            <Icons src={visa} alt="Logo da 4Used" class="img-logo-footer" />
+                            <Icons src={hipercard} alt="Logo da 4Used" class="img-logo-footer" />
+                            <Icons src={elo} alt="Logo da 4Used" class="img-logo-footer" />
+                            <Icons src={aura} alt="Logo da 4Used" class="img-logo-footer" />
+                            <Icons src={diners} alt="Logo da 4Used" class="img-logo-footer" />
+                            <Icons src={american} alt="Logo da 4Used" class="img-logo-footer" />
+                            <Icons src={paypal} alt="Logo da 4Used" class="img-logo-footer" />
+                            <Icons src={boleto} alt="Logo da 4Used" class="img-logo-footer" />
+                            <BankIcons src={bb} alt="Logo da 4Used" class="img-logo-footer" />
+                            <BankIcons src={bradesco} alt="Logo da 4Used" class="img-logo-footer" />
+                            <BankIcons src={itau} alt="Logo da 4Used" class="img-logo-footer" />
+                            <BankIcons src={santander} alt="Logo da 4Used" class="img-logo-footer" />
+                        </PaymentContainer>
+                    </SectionContainer>
+                    <SectionContainer>
+                        <SectionTitles>Segue aqui</SectionTitles>
+                        <SocialContainer>
+                            <SocialLink href="index.html" target="_blank"><img src={fb} alt="Facebook Logo" /></SocialLink>
+                            <SocialLink href="index.html" target="_blank"><img src={twitter} alt="Twitter Logo" /></SocialLink>
+                            <SocialLink href="index.html" target="_blank"><img src={insta} alt="Instagram Logo" /></SocialLink>
+                        </SocialContainer>
+                    </SectionContainer>
                     <Copyright>4Used &copy; 2021  - Todos os direitos reservados</Copyright>
                 </FooterStyle>
             </div>

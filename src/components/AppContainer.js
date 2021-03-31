@@ -1,6 +1,16 @@
-import React, { Component } from 'react'
-import CardProduto from './CardProduto/CardProduto';
-import Footer from './Footer'
+import React, { Component } from "react";
+import styled from "styled-components";
+import Footer from "./Footer";
+import Header from "./Header";
+
+const Container = styled.div`
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fffcef;
+`;
 
 const productsMock = [
   {
@@ -56,9 +66,15 @@ const productsMock = [
 export class AppContainer extends Component {
   render() {
     return (
-      <div>
-        {productsMock.map(product => (<CardProduto product={product}/>))}
-      </div>
+      
+     
+      <Container>
+        <Header />
+         <div style={{ height: "40vh" }} >
+          {productsMock.map(product => (<CardProduto product={product}/>))}
+         </div>
+        <Footer />
+      </Container>
     );
   }
 }

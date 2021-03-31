@@ -55,7 +55,7 @@ export const BotaoFinalizar = styled.button`
   color: white;
 
   :hover {
-    background-color: #00a59b;
+    background-color: #38b2ac;
   }
 `;
 
@@ -80,7 +80,7 @@ export const BotaoCarrinho = styled.span`
   align-items: center;
 
   :hover {
-    background-color: #00a59b;
+    background-color: #38b2ac;
   }
 `;
 
@@ -96,4 +96,10 @@ export const QuantidadeCarrrinho = styled.div`
   text-align: center;
   color: white;
   font-size: 0.9em;
+`;
+
+export const ContainerHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;

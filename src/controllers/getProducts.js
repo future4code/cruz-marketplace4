@@ -1,9 +1,9 @@
 import axios from "axios";
-import { apiConfig } from "./config/apiConfigs";
+import { urlApi } from "./config/apiConfigs";
 
 export const getProducts = async () => {
   try {
-    const response = await axios.get(apiConfig);
+    const response = await axios.get(urlApi);
     const { products } = response.data;
 
     return products;

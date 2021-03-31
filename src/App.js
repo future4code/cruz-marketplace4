@@ -1,6 +1,5 @@
 import * as React from "react"
 import { AppContainer } from './components/AppContainer'
-import "./styles/App.css"
 
 function App() {
 	return (

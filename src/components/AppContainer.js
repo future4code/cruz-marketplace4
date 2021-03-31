@@ -13,11 +13,24 @@ const Container = styled.div`
 `;
 
 export class AppContainer extends Component {
+  state = {
+    page: 1,
+  };
+
+  onClickChangePage = (numPage) => {
+    this.setState({ page: numPage });
+  };
+
   render() {
     return (
       <Container>
-        <Header />
-        <div style={{ height: "40vh" }} />
+        <Header onClickChangePage={this.onClickChangePage} />
+        {this.state.page === 1 && (
+          <div style={{ height: "40vh" }}>Comprador</div>
+        )}
+        {this.state.page === 2 && (
+          <div style={{ height: "40vh" }}>Vendedor</div>
+        )}
         <Footer />
       </Container>
     );

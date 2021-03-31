@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export class AppContainer extends Component {
   render() {
@@ -6,6 +6,6 @@ export class AppContainer extends Component {
       <div>
         <p>Pronto para começar!</p>
       </div>
-    )
+    );
   }
 }

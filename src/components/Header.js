@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import logo from '../images/logo.png'
+import logo from '../imag/logo.png'
 import { SearchIcon } from '@chakra-ui/icons'
 import { FiShoppingCart } from 'react-icons/fi';
 import { IconContext } from "react-icons";

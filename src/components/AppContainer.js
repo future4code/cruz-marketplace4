@@ -8,6 +8,6 @@ export class AppContainer extends Component {
         <p>Pronto para começar!</p>
         <Footer />
       </div>
-    )
+    );
   }
 }

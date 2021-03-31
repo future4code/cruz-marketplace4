@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { extendTheme, Button, ChakraProvider } from "@chakra-ui/react"
-
+import imageBanner from '../img/banner.jpg'
 
 const theme = extendTheme({
   colors: {
     brand: {
-      100: "#ef4242"
+      100: "#fe9600"
     },
   },
 })
@@ -29,12 +29,17 @@ const Categories = styled.nav`
     font-size: 1.2rem;
 `
 const Banner = styled.div`
-  background: #7fcec9;
+  background-image: url(${imageBanner});
+  background-size: 100% 100%;
   width: 100vw;
+  height: 60vh;
   padding: 2rem;
   font-weight: 800;
 
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
   
 `
 
@@ -42,28 +47,32 @@ const ContainerText = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  width: 45%;
 `
 const Discount = styled.span`
   color: white;
+  margin-top: -2rem;
   font-size: 5rem;
   text-shadow: 2px 2px 5px #333;
 `
 
-const Text1 = styled.span`
-  color: #555967;
-  font-size: 3.5rem;
-
-  margin-top: -2rem;
-
+const Texts = styled.span `
+  font-size: 4rem;
+  text-shadow: 2px 2px 5px #333;
+  margin-top: -2.2rem;
+  color: #CBD5E0;
 `
-const Text2 = styled.span`
-  color: #333;
-  font-size: 3.5rem;
-  margin-top: -2rem;
-`
+const Text1 = styled(Texts)``
+const Text2 = styled(Texts)``
 
 const ContainerButton = styled.div`
-  margin-top: 1rem;
+
+  width: 45%;
+  /* background: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 const ContainerFilters = styled.div`
   padding: 4rem 0 1rem 0;
@@ -140,22 +149,22 @@ export default class ProductsPage extends React.Component {
             <img />
             <ContainerText>
               <Discount>50%</Discount>
-              <Text1>de desconto em todos</Text1>
-              <Text2>os produtos da nossa seleção</Text2>
+              <Text1>de desconto</Text1>
+              <Text2>na moda infantil</Text2>
             </ContainerText>
             <ContainerButton>
               <Button
                 bg='brand.100'
                 size='sm'
                 color='white'
-                _hover={{ bg: "#d11818" }}
+                _hover={{ bg: "#ED8936" }}
                 _active={{
-                  bg: "#ef4242",
+                  bg: "#F6AD55",
                   transform: "scale(0.98)"
                 }}
                 _focus={{
                   boxShadow:
-                    "0 0 1px 2px #a03030, 0 1px 1px rgba(0, 0, 0, .15)",
+                    "0 0 1px 2px #DD6B20, 0 1px 1px rgba(0, 0, 0, .15)",
                 }}>
                 VEJA AQUI
               </Button>

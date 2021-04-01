@@ -125,7 +125,7 @@ export default class ProductsPage extends React.Component {
     inputMin: "",
     inputMax: "",
     selectOrder: '',
-    categoty: '',
+    selectCategory: '',
     product: [{
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 20,
@@ -166,32 +166,30 @@ export default class ProductsPage extends React.Component {
   handleOrder = (e) => {
     this.setState({ selectOrder: e.target.value })
   }
-
   changingCategory = (category) => {
-    const listCategory = this.state.product.filter((item) => {
-      if (item.category === category) {
-        return true
-      } else {
-        return false
-      }
-    })
-
-    return listCategory
+    this.setState({ selectCategory: category })
   }
 
 
   render() {
     console.log(this.changingCategory)
-    const filter = this.state.product.filter((item) => {
-      if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')
-      ) {
+    const filtering = this.state.product.filter((item) => {
+      if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')) {
         return true
       } else {
         return false
       }
     })
 
-    const listProducts = filter.map((item) => {
+    const filterByCategory = filtering.filter((item) => {
+      if(item.category === this.state.selectCategory || this.state.selectCategory === ''){
+        return true
+      } else {
+        return false
+      }
+    })
+
+    const listProducts = filterByCategory.map((item) => {
       return (
         <CardProduct
           photos={item.photos}
@@ -199,9 +197,8 @@ export default class ProductsPage extends React.Component {
           name={item.name}
           price={item.price}
         />
-      )      
+      )
     })
-
 
     return (
       <ChakraProvider theme={theme}>
@@ -270,7 +267,7 @@ export default class ProductsPage extends React.Component {
 
           <ContainerProducts>
             {listProducts}
-            {listByCategory}
+
           </ContainerProducts>
         </Main>
       </ChakraProvider>

@@ -125,29 +125,34 @@ export default class ProductsPage extends React.Component {
     inputMin: "",
     inputMax: "",
     selectOrder: '',
+    selectCategory: '',
     product: [{
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 20,
       alt: '',
       name: 'astro',
+      category: 'moda feminina'
     },
     {
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 50,
       alt: '',
       name: 'castro',
+      category: 'moda masculina'
     },
     {
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 10,
       alt: '',
       name: 'bastro',
+      category: 'moda infantil'
     },
     {
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 80,
       alt: '',
       name: 'dastro',
+      category: 'calçados'
     }
     ]
   };
@@ -161,18 +166,30 @@ export default class ProductsPage extends React.Component {
   handleOrder = (e) => {
     this.setState({ selectOrder: e.target.value })
   }
-  
+  changingCategory = (category) => {
+    this.setState({ selectCategory: category })
+  }
+
+
   render() {
-    const filter = this.state.product.filter((item) => {
-      if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')
-      ) {
+    console.log(this.changingCategory)
+    const filtering = this.state.product.filter((item) => {
+      if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')) {
         return true
       } else {
         return false
       }
     })
 
-    const listProducts = filter.map((item) => {
+    const filterByCategory = filtering.filter((item) => {
+      if (item.category === this.state.selectCategory || this.state.selectCategory === '') {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    const listProducts = filterByCategory.map((item) => {
       return (
         <CardProduct
           photos={item.photos}
@@ -182,17 +199,19 @@ export default class ProductsPage extends React.Component {
         />
       )
     })
+
     return (
       <ChakraProvider theme={theme}>
         <Main>
           <Categories>
-            <a href="">Moda feminina</a>
-            <a href="">Moda masculina</a>
-            <a href="">Moda infantil</a>
-            <a href="">Calçados</a>
-            <a href="">Eletrônicos</a>
-            <a href="">Decoração</a>
-            <a href="">Móveis</a>
+            <p onClick={() => this.changingCategory('')}>Todas</p>
+            <p onClick={() => this.changingCategory('moda feminina')}>Moda feminina</p>
+            <p onClick={() => this.changingCategory('moda masculina')}>Moda masculina</p>
+            <p onClick={() => this.changingCategory('moda infantil')}>Moda infantil</p>
+            <p onClick={() => this.changingCategory('calçados')}>Calçados</p>
+            <p onClick={() => this.changingCategory('eletrônicos')}>Eletrônicos</p>
+            <p onClick={() => this.changingCategory('decoração')}>Decoração</p>
+            <p onClick={() => this.changingCategory('móveis')}>Móveis</p>
           </Categories>
           <Banner>
             <ContainerText>
@@ -249,6 +268,7 @@ export default class ProductsPage extends React.Component {
 
           <ContainerProducts>
             {listProducts}
+
           </ContainerProducts>
         </Main>
       </ChakraProvider>

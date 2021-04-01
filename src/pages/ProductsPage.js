@@ -182,7 +182,7 @@ export default class ProductsPage extends React.Component {
     })
 
     const filterByCategory = filtering.filter((item) => {
-      if(item.category === this.state.selectCategory || this.state.selectCategory === ''){
+      if (item.category === this.state.selectCategory || this.state.selectCategory === '') {
         return true
       } else {
         return false
@@ -204,6 +204,7 @@ export default class ProductsPage extends React.Component {
       <ChakraProvider theme={theme}>
         <Main>
           <Categories>
+            <p onClick={() => this.changingCategory('')}>Todas</p>
             <p onClick={() => this.changingCategory('moda feminina')}>Moda feminina</p>
             <p onClick={() => this.changingCategory('moda masculina')}>Moda masculina</p>
             <p onClick={() => this.changingCategory('moda infantil')}>Moda infantil</p>

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { extendTheme, Button, ChakraProvider } from "@chakra-ui/react";
 import imageBanner from "../img/banner.jpg";
+import CardProduct from '../components/CardProduct/CardProduct'
+
 
 const theme = extendTheme({
   colors: {
@@ -145,7 +147,6 @@ export default class ProductsPage extends React.Component {
             <a href="">Móveis</a>
           </Categories>
           <Banner>
-            <img />
             <ContainerText>
               <Discount>50%</Discount>
               <Text1>de desconto</Text1>
@@ -196,7 +197,15 @@ export default class ProductsPage extends React.Component {
             </OrderSelect>
           </ContainerFilters>
 
-          <ContainerProducts></ContainerProducts>
+          <ContainerProducts>
+            <CardProduct 
+              photos={'https://th.bing.com/th/id/Rd2da019ba746b70ffa10c0faeac177dd?rik=jmIr1Iy0NWTR2Q&riu=http%3a%2f%2fwww.filhovemver.com.br%2fwp-content%2fuploads%2f2014%2f11%2fpor-do-sol-lindo.jpg&ehk=6PrYNWoz7PPw7MXceXpaPbiun%2bLd8I95xN6t%2f206Vuo%3d&risl=&pid=ImgRaw'}
+              alt={'Nome da foto'}
+              name={'Por do sol'}
+              price={'20,00'}
+              // name={'foto'}
+            />
+          </ContainerProducts>
         </Main>
       </ChakraProvider>
     );

@@ -5,8 +5,8 @@ export const postProducts = async (body) => {
   try {
     const response = await axios.post(urlApi, body);
 
-    console.log(response.data);
+    return response.status
   } catch (error) {
-    console.error(error.response);
+    return error.response.data.message
   }
 };

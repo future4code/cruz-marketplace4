@@ -126,8 +126,30 @@ export default class ProductsPage extends React.Component {
     inputMax: "",
     selectOrder: '',
     product: [{
-      price: ''
-    }]
+      photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
+      price: 20,
+      alt: '',
+      name: 'astro',
+    },
+    {
+      photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
+      price: 50,
+      alt: '',
+      name: 'castro',
+    },
+    {
+      photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
+      price: 10,
+      alt: '',
+      name: 'bastro',
+    },
+    {
+      photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
+      price: 80,
+      alt: '',
+      name: 'dastro',
+    }
+    ]
   };
 
   handleMin = (e) => {
@@ -137,14 +159,29 @@ export default class ProductsPage extends React.Component {
     this.setState({ inputMax: e.target.value });
   };
   handleOrder = (e) => {
-    this.setState({ selectOrder: e.target.value})
+    this.setState({ selectOrder: e.target.value })
   }
-
+  
   render() {
-    // const filter = this.state.product.filter((item) => {
-    //   if((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')
-    //   )
-    // })
+    const filter = this.state.product.filter((item) => {
+      if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')
+      ) {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    const listProducts = filter.map((item) => {
+      return (
+        <CardProduct
+          photos={item.photos}
+          alt={item.alt}
+          name={item.name}
+          price={item.price}
+        />
+      )
+    })
     return (
       <ChakraProvider theme={theme}>
         <Main>
@@ -211,30 +248,7 @@ export default class ProductsPage extends React.Component {
           </ContainerFilters>
 
           <ContainerProducts>
-            <CardProduct
-              photos={'https://th.bing.com/th/id/Rd2da019ba746b70ffa10c0faeac177dd?rik=jmIr1Iy0NWTR2Q&riu=http%3a%2f%2fwww.filhovemver.com.br%2fwp-content%2fuploads%2f2014%2f11%2fpor-do-sol-lindo.jpg&ehk=6PrYNWoz7PPw7MXceXpaPbiun%2bLd8I95xN6t%2f206Vuo%3d&risl=&pid=ImgRaw'}
-              alt={'Nome da foto'}
-              name={'Por do sol'}
-              price={this.state.price}
-            />
-            <CardProduct
-              photos={'https://th.bing.com/th/id/Rd2da019ba746b70ffa10c0faeac177dd?rik=jmIr1Iy0NWTR2Q&riu=http%3a%2f%2fwww.filhovemver.com.br%2fwp-content%2fuploads%2f2014%2f11%2fpor-do-sol-lindo.jpg&ehk=6PrYNWoz7PPw7MXceXpaPbiun%2bLd8I95xN6t%2f206Vuo%3d&risl=&pid=ImgRaw'}
-              alt={'Nome da foto'}
-              name={'Por do sol'}
-              price={this.state.price}
-            />
-            <CardProduct
-              photos={'https://th.bing.com/th/id/Rd2da019ba746b70ffa10c0faeac177dd?rik=jmIr1Iy0NWTR2Q&riu=http%3a%2f%2fwww.filhovemver.com.br%2fwp-content%2fuploads%2f2014%2f11%2fpor-do-sol-lindo.jpg&ehk=6PrYNWoz7PPw7MXceXpaPbiun%2bLd8I95xN6t%2f206Vuo%3d&risl=&pid=ImgRaw'}
-              alt={'Nome da foto'}
-              name={'Por do sol'}
-              price={this.state.price}
-            />
-            <CardProduct
-              photos={'https://th.bing.com/th/id/Rd2da019ba746b70ffa10c0faeac177dd?rik=jmIr1Iy0NWTR2Q&riu=http%3a%2f%2fwww.filhovemver.com.br%2fwp-content%2fuploads%2f2014%2f11%2fpor-do-sol-lindo.jpg&ehk=6PrYNWoz7PPw7MXceXpaPbiun%2bLd8I95xN6t%2f206Vuo%3d&risl=&pid=ImgRaw'}
-              alt={'Nome da foto'}
-              name={'Por do sol'}
-              price={this.state.price}
-            />
+            {listProducts}
           </ContainerProducts>
         </Main>
       </ChakraProvider>

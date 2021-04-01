@@ -20,7 +20,7 @@ const theme = extendTheme({
 });
 
 const Container = styled.div`
-  width: 99.1vw;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

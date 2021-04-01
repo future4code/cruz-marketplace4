@@ -1,7 +1,22 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PageSeller from './PageSeller';
+import { ChakraProvider } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
+import Footer from './Footer';
+import Header from './Header';
 import styled from "styled-components";
-import Footer from "./Footer";
-import Header from "./Header";
+
+const theme = extendTheme({
+  colors: {
+    brand: {
+      cinza: "#4D4D59",
+      vermelho: "#EF4242",
+      verdeazulado: "#40A59B",
+      amarelo: "#F1BF63",
+      creme: "FFFCEF"
+    },
+  },
+})
 
 const Container = styled.div`
   width: 100vw;
@@ -80,6 +95,9 @@ export class AppContainer extends Component {
         {this.state.page === 2 && (
           <div style={{ height: "40vh" }}>Vendedor</div>
         )}
+        //<ChakraProvider theme={theme}>
+          //<PageSeller />
+        //</ChakraProvider>
         <Footer />
       </Container>
     );

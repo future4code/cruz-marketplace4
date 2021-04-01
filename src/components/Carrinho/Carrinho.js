@@ -49,7 +49,7 @@ export default function Carrinho(props) {
           <NomeProduto>{name.toUpperCase()}</NomeProduto>
           <ValorProduto>{transformToReal(price * quantity)}</ValorProduto>
         </div>
-        <BotaoExcluir>
+        <BotaoExcluir onClick={() => props.deleteProductShoppingCart(product)}>
           <CloseIcon />
         </BotaoExcluir>
       </LinhaProduto>

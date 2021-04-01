@@ -116,11 +116,33 @@ export class AppContainer extends Component {
     }
   };
 
+  deleteProductShoppingCart = (productToDelete) => {
+    if (productToDelete.quantity === 1) {
+      const newListProducts = this.state.listProducts.filter((product) => {
+        return product.id !== productToDelete.id;
+      });
+      this.setState({ listProducts: newListProducts });
+    } else {
+      const newListProducts = this.state.listProducts.map((product) => {
+        if (product.id === productToDelete.id) {
+          return {
+            ...product,
+            quantity: product.quantity - 1,
+          };
+        }
+        return product;
+      });
+
+      this.setState({ listProducts: newListProducts });
+    }
+  };
+
   render() {
     return (
       <ChakraProvider theme={theme}>
         <Container>
           <Header
+            deleteProductShoppingCart={this.deleteProductShoppingCart}
             listProducts={this.state.listProducts}
             onClickChangePage={this.onClickChangePage}
           />

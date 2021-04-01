@@ -101,7 +101,10 @@ export default class Header extends React.Component {
               </ButtonSearch>
             </ContainerSearch>
 
-            <Carrinho listProducts={this.props.listProducts} />
+            <Carrinho
+              deleteProductShoppingCart={this.props.deleteProductShoppingCart}
+              listProducts={this.props.listProducts}
+            />
 
             <Button
               onClick={() => this.props.onClickChangePage(2)}

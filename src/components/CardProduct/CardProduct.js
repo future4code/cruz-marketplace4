@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {Box, Image, Badge} from '@chakra-ui/react'
-import {StarIcon} from '@chakra-ui/icons'
+import {Box, Image} from '@chakra-ui/react'
 
 
 
@@ -14,7 +13,7 @@ export default class CardProduto extends Component {
       borderRadius="lg" 
       overflow="hidden"
       >
-        <Image src={this.props.product.photos[0]} alt={this.props.product.name} />
+        <Image src={this.props.photos} alt={this.props.alt} />
 
         <Box
           p="6" 
@@ -33,11 +32,11 @@ export default class CardProduto extends Component {
             textAlign="center"
             color="red"
           >
-            {this.props.product.name}
+            {this.props.name}
           </Box>
 
           <Box textAlign="center">
-            R$ {this.props.product.price}
+            R$ {this.props.price}
           </Box>
 
           <Box

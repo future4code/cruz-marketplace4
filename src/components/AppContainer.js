@@ -80,17 +80,50 @@ const productsMock = [
 export class AppContainer extends Component {
   state = {
     page: 1,
+    listProducts: [],
   };
 
   onClickChangePage = (numPage) => {
     this.setState({ page: numPage });
   };
 
+  addShoppingCart = (productToBuy) => {
+    const isInCart = this.state.listProducts.find((product) => {
+      return product.id === productToBuy.id;
+    });
+
+    if (isInCart) {
+      const newListProducts = this.state.listProducts.map((product) => {
+        if (product.id === productToBuy.id) {
+          return {
+            ...product,
+            quantity: product.quantity + 1,
+          };
+        }
+        return product;
+      });
+
+      this.setState({ listProducts: newListProducts });
+    } else {
+      const newProduct = {
+        name: productToBuy.name,
+        price: productToBuy.price,
+        quantity: 1,
+        id: productToBuy.id,
+      };
+
+      this.setState({ listProducts: [...this.state.listProducts, newProduct] });
+    }
+  };
+
   render() {
     return (
       <ChakraProvider theme={theme}>
         <Container>
-          <Header onClickChangePage={this.onClickChangePage} />
+          <Header
+            listProducts={this.state.listProducts}
+            onClickChangePage={this.onClickChangePage}
+          />
           {this.state.page === 1 && <ProductsPage />}
           {this.state.page === 2 && <PageSeller />}
           <Footer />

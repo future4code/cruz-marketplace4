@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PageSeller from "./PageSeller";
+import PageSeller from "../pages/pageSeller/PageSeller";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import Footer from "./Footer";

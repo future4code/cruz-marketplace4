@@ -29,6 +29,7 @@ const ConteinerRight = styled.div`
 
 const Image = styled.img`
   width: 9rem;
+  cursor: pointer;
 `;
 const ContainerSearch = styled.div`
   display: flex;
@@ -87,7 +88,7 @@ export default class Header extends React.Component {
     return (
       <ChakraProvider theme={theme}>
         <Container>
-          <Image src={logo} />
+          <Image onClick={() => this.props.onClickChangePage(1)} src={logo} />
           <ConteinerRight>
             <ContainerSearch>
               <SearchBox
@@ -103,6 +104,7 @@ export default class Header extends React.Component {
             <Carrinho />
 
             <Button
+              onClick={() => this.props.onClickChangePage(2)}
               bg="brand.100"
               size="sm"
               color="white"

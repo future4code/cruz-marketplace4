@@ -3,11 +3,12 @@ import {ProductRegistration, TitleH2, TitleH3, ProductsList, Products} from "./p
 import { Button } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { SimpleGrid } from "@chakra-ui/react";
-import { Checkbox } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
 import { Textarea } from "@chakra-ui/react";
 import { Grid } from "@chakra-ui/react";
 import { postProducts } from "../../controllers/postProduct";
+import { getProducts } from "../../controllers/getProducts";
+
 
 export default class PageSeller extends React.Component {
   state = {
@@ -17,7 +18,16 @@ export default class PageSeller extends React.Component {
     paymentMethod: "",
     category: "",
     photos: "",
-    installments: ""
+    installments: "",
+    products: []
+  }
+
+  componentDidMount() {
+    this.getProducts()
+  }
+
+  componentDidUpdate() {
+    this.getProducts()
   }
 
   handleName = (e) => {
@@ -49,7 +59,6 @@ export default class PageSeller extends React.Component {
   }
 
   addProduct = async() => {
-    
       const body = {
         name: this.state.name,
         description: this.state.description,
@@ -71,6 +80,11 @@ export default class PageSeller extends React.Component {
       console.log(response)
       response === 200 ? alert("Produto adicionado com sucesso, boas vendas!") 
                        : alert("Algum erro ocorreu, não conseguimos cadastrar o seu produto, tente novamente.")
+  }
+
+  getProducts = async() => {
+      const response  = await getProducts()
+      this.setState({ products: response })
   }
 
   render() {
@@ -173,41 +187,26 @@ export default class PageSeller extends React.Component {
         </ProductRegistration>
         <ProductsList>
           <TitleH2>Produtos cadastrados</TitleH2>
-          <Grid templateColumns="420px 20px" justifyContent="center">
-            <Products>Produto cadastrado 1</Products>
-            <Button
-              bg="brand.vermelho"
-              color="#FFFFFF"
-              size="xs"
-              width="5%"
-              _hover={{ bg: "#F56565" }}
-              alignSelf="center"
-            >
-              x
-            </Button>
-            <Products>Produto cadastrado 2</Products>
-            <Button
-              bg="brand.vermelho"
-              color="#FFFFFF"
-              size="xs"
-              width="5%"
-              _hover={{ bg: "#F56565" }}
-              alignSelf="center"
-            >
-              x
-            </Button>
-            <Products>Produto cadastrado 3</Products>
-            <Button
-              bg="brand.vermelho"
-              color="#FFFFFF"
-              size="xs"
-              width="5%"
-              _hover={{ bg: "#F56565" }}
-              alignSelf="center"
-            >
-              x
-            </Button>
-          </Grid>
+            {this.state.products.map((products) => { 
+              return(
+                <Products>
+                  <Grid templateColumns="400px 20px" justifyContent="center">
+                  {products.name}
+                  <Button
+                  bg="brand.vermelho"
+                  color="#FFFFFF"
+                  size="xs"
+                  width="5%"
+                  _hover={{ bg: "#F56565" }}
+                  alignSelf="center">
+                  x
+                  </Button>
+                  </Grid>
+
+                </Products>
+              )
+            }
+            )}
         </ProductsList>
       </SimpleGrid>
     );

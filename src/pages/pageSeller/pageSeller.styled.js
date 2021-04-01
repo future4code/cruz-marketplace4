@@ -23,7 +23,7 @@ export const TitleH3 = styled.h3`
 export const ProductsList = styled.div`
   text-align: center;
   margin: 0 auto;
-  width: 45vw;
+  width: 31vw;
   line-height: 2.2;
 `;
 
@@ -31,5 +31,4 @@ export const Products = styled.li`
   list-style: none;
   border-bottom: 2px solid #40a59b;
   text-align: left;
-  padding-right: 5vw;
 `;

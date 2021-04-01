@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { extendTheme, Button, ChakraProvider } from "@chakra-ui/react";
 import imageBanner from "../img/banner.jpg";
-import CardProduct from '../components/CardProduct/CardProduct'
-
+import CardProduct from "../components/CardProduct/CardProduct";
+import { getProducts } from "../controllers/getProducts";
 
 const theme = extendTheme({
   colors: {
@@ -124,32 +124,17 @@ export default class ProductsPage extends React.Component {
   state = {
     inputMin: "",
     inputMax: "",
-    selectOrder: '',
-    product: [{
-      photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
-      price: 20,
-      alt: '',
-      name: 'astro',
-    },
-    {
-      photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
-      price: 50,
-      alt: '',
-      name: 'castro',
-    },
-    {
-      photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
-      price: 10,
-      alt: '',
-      name: 'bastro',
-    },
-    {
-      photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
-      price: 80,
-      alt: '',
-      name: 'dastro',
-    }
-    ]
+    selectOrder: "",
+    product: [],
+  };
+
+  componentDidMount() {
+    this.getProductsApi();
+  }
+
+  getProductsApi = async () => {
+    const response = await getProducts();
+    this.setState({ product: response });
   };
 
   handleMin = (e) => {
@@ -159,18 +144,20 @@ export default class ProductsPage extends React.Component {
     this.setState({ inputMax: e.target.value });
   };
   handleOrder = (e) => {
-    this.setState({ selectOrder: e.target.value })
-  }
-  
+    this.setState({ selectOrder: e.target.value });
+  };
+
   render() {
     const filter = this.state.product.filter((item) => {
-      if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')
+      if (
+        (item.price >= this.state.inputMin || this.state.inputMin === "") &&
+        (item.price <= this.state.inputMax || this.state.inputMax === "")
       ) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
-    })
+    });
 
     const listProducts = filter.map((item) => {
       return (
@@ -180,8 +167,8 @@ export default class ProductsPage extends React.Component {
           name={item.name}
           price={item.price}
         />
-      )
-    })
+      );
+    });
     return (
       <ChakraProvider theme={theme}>
         <Main>
@@ -242,14 +229,12 @@ export default class ProductsPage extends React.Component {
             </Filter>
             <OrderSelect onChange={this.handleOrder}>
               <option value={null}>ORDENAR POR</option>
-              <option value={'maior'}>MAIOR PREÇO</option>
-              <option value={'menor'}>MAIOR MENOR</option>
+              <option value={"maior"}>MAIOR PREÇO</option>
+              <option value={"menor"}>MAIOR MENOR</option>
             </OrderSelect>
           </ContainerFilters>
 
-          <ContainerProducts>
-            {listProducts}
-          </ContainerProducts>
+          <ContainerProducts>{listProducts}</ContainerProducts>
         </Main>
       </ChakraProvider>
     );

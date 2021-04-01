@@ -25,9 +25,36 @@ import {
   QuantidadeCarrrinho,
   ContainerHeader,
 } from "./carrinho.styled";
+import { transformToReal } from "../../utils/transformToReal";
 
-export default function Carrinho() {
+export default function Carrinho(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const priceTotal = () => {
+    let curr = 0;
+
+    for (const product of props.listProducts) {
+      const valorTotalPorProduto = product.quantity * product.price;
+      curr += valorTotalPorProduto;
+    }
+    return curr;
+  };
+
+  const products = props.listProducts.map((product) => {
+    const { name, price, quantity, id } = product;
+    return (
+      <LinhaProduto key={id}>
+        <QuantidadeProduto>{quantity}</QuantidadeProduto>
+        <div>
+          <NomeProduto>{name.toUpperCase()}</NomeProduto>
+          <ValorProduto>{transformToReal(price * quantity)}</ValorProduto>
+        </div>
+        <BotaoExcluir>
+          <CloseIcon />
+        </BotaoExcluir>
+      </LinhaProduto>
+    );
+  });
 
   return (
     <>
@@ -35,7 +62,7 @@ export default function Carrinho() {
         <BotaoCarrinho onClick={onOpen}>
           <FontAwesomeIcon color={"white"} icon={faShoppingCart} />
         </BotaoCarrinho>
-        <QuantidadeCarrrinho>2</QuantidadeCarrrinho>
+        <QuantidadeCarrrinho>{props.listProducts.length}</QuantidadeCarrrinho>
       </div>
       <Drawer
         colorScheme={"red"}
@@ -66,32 +93,13 @@ export default function Carrinho() {
               </ContainerHeader>
             </DrawerHeader>
 
-            <DrawerBody>
-              <LinhaProduto>
-                <QuantidadeProduto>1</QuantidadeProduto>
-                <div>
-                  <NomeProduto>PRODUTO</NomeProduto>
-                  <ValorProduto>R$ 25,00</ValorProduto>
-                </div>
-                <BotaoExcluir>
-                  <CloseIcon />
-                </BotaoExcluir>
-              </LinhaProduto>
-              <LinhaProduto>
-                <QuantidadeProduto>1</QuantidadeProduto>
-                <div>
-                  <NomeProduto>PRODUTO</NomeProduto>
-                  <ValorProduto>R$ 25,00</ValorProduto>
-                </div>
-                <BotaoExcluir>
-                  <CloseIcon />
-                </BotaoExcluir>
-              </LinhaProduto>
-            </DrawerBody>
+            <DrawerBody>{products}</DrawerBody>
 
             <DrawerFooter>
               <ConteinerFooterCarrinho>
-                <ValorTotal>VALOR TOTAL: R$ 50,00</ValorTotal>
+                <ValorTotal>
+                  VALOR TOTAL: {transformToReal(priceTotal())}
+                </ValorTotal>
                 <BotaoFinalizar>FINALIZAR COMPRA</BotaoFinalizar>
               </ConteinerFooterCarrinho>
             </DrawerFooter>

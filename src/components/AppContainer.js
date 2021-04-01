@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import PageSeller from './PageSeller';
+import React, { Component } from "react";
+import PageSeller from "./PageSeller";
 import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
-import Footer from './Footer';
-import Header from './Header';
+import Footer from "./Footer";
+import Header from "./Header";
 import styled from "styled-components";
+import ProductsPage from "../pages/ProductsPage";
 
 const theme = extendTheme({
   colors: {
@@ -13,13 +14,13 @@ const theme = extendTheme({
       vermelho: "#EF4242",
       verdeazulado: "#40A59B",
       amarelo: "#F1BF63",
-      creme: "FFFCEF"
+      creme: "FFFCEF",
     },
   },
-})
+});
 
 const Container = styled.div`
-  width: 100vw;
+  width: 99.1vw;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -87,19 +88,14 @@ export class AppContainer extends Component {
 
   render() {
     return (
-      <Container>
-        <Header onClickChangePage={this.onClickChangePage} />
-        {this.state.page === 1 && (
-          <div style={{ height: "40vh" }}>Comprador</div>
-        )}
-        {this.state.page === 2 && (
-          <div style={{ height: "40vh" }}>Vendedor</div>
-        )}
-        //<ChakraProvider theme={theme}>
-          //<PageSeller />
-        //</ChakraProvider>
-        <Footer />
-      </Container>
+      <ChakraProvider theme={theme}>
+        <Container>
+          <Header onClickChangePage={this.onClickChangePage} />
+          {this.state.page === 1 && <ProductsPage />}
+          {this.state.page === 2 && <PageSeller />}
+          <Footer />
+        </Container>
+      </ChakraProvider>
     );
   }
 }

@@ -134,7 +134,8 @@ export default class PageSeller extends React.Component {
                 <ProductsList>
                     <TitleH2>Produtos cadastrados</TitleH2>
                     <Grid 
-                        templateColumns="1fr 20px"
+                        templateColumns="420px 20px"
+                        justifyContent="center"
                     >
                         <Products>Produto cadastrado 1</Products>
                         <Button bg="brand.vermelho" color="#FFFFFF" size="xs" width="5%" _hover={{ bg: "#F56565" }} alignSelf="center">x</Button>

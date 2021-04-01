@@ -30,7 +30,7 @@ const FooterStyle = styled.footer`
 const ImgLogo = styled.img`
   background-color: #fffcef;
   border-radius: 50%;
-  width: 55%;
+  width: 60%;
   margin: 0 auto;
   padding: 10px 12px;
   box-shadow: 2px 1.5px 5px gray;
@@ -56,7 +56,7 @@ const Copyright = styled.div`
 `;
 
 const SectionContainer = styled.div`
-  height: 45vh;
+  height: 49vh;
   width: 90%;
   padding: 25px 0 20px 0;
 `;
@@ -156,6 +156,9 @@ export default class Footer extends React.Component {
               </Link>
               <Link href="index.html" target="_blank">
                 <List>Moda masculina</List>
+              </Link>
+              <Link href="index.html" target="_blank">
+                <List>Moda infantil</List>
               </Link>
               <Link href="index.html" target="_blank">
                 <List>Calçados</List>

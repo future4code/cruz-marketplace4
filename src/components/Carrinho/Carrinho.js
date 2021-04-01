@@ -29,6 +29,10 @@ import {
 export default function Carrinho() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const teste = () => {
+    console.log('foi')
+  }
+  
   return (
     <>
       <div style={{ margin: "0 3rem" }}>
@@ -73,7 +77,7 @@ export default function Carrinho() {
                   <NomeProduto>PRODUTO</NomeProduto>
                   <ValorProduto>R$ 25,00</ValorProduto>
                 </div>
-                <BotaoExcluir>
+                <BotaoExcluir onCLick={teste}>
                   <CloseIcon />
                 </BotaoExcluir>
               </LinhaProduto>

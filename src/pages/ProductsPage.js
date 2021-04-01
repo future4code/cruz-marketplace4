@@ -66,7 +66,6 @@ const Text2 = styled(Texts)``;
 
 const ContainerButton = styled.div`
   width: 45%;
-  /* background: red; */
   display: flex;
   align-items: center;
   justify-content: center;

@@ -137,10 +137,13 @@ export default class ProductsPage extends React.Component {
       <ChakraProvider theme={theme}>
         <Main>
           <Categories>
-            <a href="">Categoria</a>
-            <a href="">Categoria</a>
-            <a href="">Categoria</a>
-            <a href="">Categoria</a>
+            <a href="">Moda feminina</a>
+            <a href="">Moda masculina</a>
+            <a href="">Moda infantil</a>
+            <a href="">Calçados</a>
+            <a href="">Eletrônicos</a>
+            <a href="">Decoração</a>
+            <a href="">Móveis</a>
           </Categories>
           <Banner>
             <img />

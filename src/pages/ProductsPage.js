@@ -125,29 +125,34 @@ export default class ProductsPage extends React.Component {
     inputMin: "",
     inputMax: "",
     selectOrder: '',
+    categoty: '',
     product: [{
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 20,
       alt: '',
       name: 'astro',
+      category: 'moda feminina'
     },
     {
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 50,
       alt: '',
       name: 'castro',
+      category: 'moda masculina'
     },
     {
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 10,
       alt: '',
       name: 'bastro',
+      category: 'moda infantil'
     },
     {
       photos: 'https://www.tagesspiegel.de/images/deutscher-astronaut-alexander-gerst/22647738/1-format2.jpg',
       price: 80,
       alt: '',
       name: 'dastro',
+      category: 'calçados'
     }
     ]
   };
@@ -161,8 +166,22 @@ export default class ProductsPage extends React.Component {
   handleOrder = (e) => {
     this.setState({ selectOrder: e.target.value })
   }
-  
+
+  changingCategory = (category) => {
+    const listCategory = this.state.product.filter((item) => {
+      if (item.category === category) {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    return listCategory
+  }
+
+
   render() {
+    console.log(this.changingCategory)
     const filter = this.state.product.filter((item) => {
       if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')
       ) {
@@ -180,19 +199,21 @@ export default class ProductsPage extends React.Component {
           name={item.name}
           price={item.price}
         />
-      )
+      )      
     })
+
+
     return (
       <ChakraProvider theme={theme}>
         <Main>
           <Categories>
-            <a href="">Moda feminina</a>
-            <a href="">Moda masculina</a>
-            <a href="">Moda infantil</a>
-            <a href="">Calçados</a>
-            <a href="">Eletrônicos</a>
-            <a href="">Decoração</a>
-            <a href="">Móveis</a>
+            <p onClick={() => this.changingCategory('moda feminina')}>Moda feminina</p>
+            <p onClick={() => this.changingCategory('moda masculina')}>Moda masculina</p>
+            <p onClick={() => this.changingCategory('moda infantil')}>Moda infantil</p>
+            <p onClick={() => this.changingCategory('calçados')}>Calçados</p>
+            <p onClick={() => this.changingCategory('eletrônicos')}>Eletrônicos</p>
+            <p onClick={() => this.changingCategory('decoração')}>Decoração</p>
+            <p onClick={() => this.changingCategory('móveis')}>Móveis</p>
           </Categories>
           <Banner>
             <ContainerText>
@@ -249,6 +270,7 @@ export default class ProductsPage extends React.Component {
 
           <ContainerProducts>
             {listProducts}
+            {listByCategory}
           </ContainerProducts>
         </Main>
       </ChakraProvider>

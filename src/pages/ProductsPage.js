@@ -222,21 +222,21 @@ export default class ProductsPage extends React.Component {
         <Main>
           <Categories>
             <p onClick={() => this.changingCategory("")}>Todas</p>
-            <p onClick={() => this.changingCategory("moda feminina")}>
+            <p onClick={() => this.changingCategory("moda-feminina")}>
               Moda feminina
             </p>
-            <p onClick={() => this.changingCategory("moda masculina")}>
+            <p onClick={() => this.changingCategory("moda-masculina")}>
               Moda masculina
             </p>
-            <p onClick={() => this.changingCategory("moda infantil")}>
+            <p onClick={() => this.changingCategory("moda-infantil")}>
               Moda infantil
             </p>
-            <p onClick={() => this.changingCategory("calçados")}>Calçados</p>
-            <p onClick={() => this.changingCategory("eletrônicos")}>
+            <p onClick={() => this.changingCategory("calcados")}>Calçados</p>
+            <p onClick={() => this.changingCategory("eletronicos")}>
               Eletrônicos
             </p>
-            <p onClick={() => this.changingCategory("decoração")}>Decoração</p>
-            <p onClick={() => this.changingCategory("móveis")}>Móveis</p>
+            <p onClick={() => this.changingCategory("decoracao")}>Decoração</p>
+            <p onClick={() => this.changingCategory("moveis")}>Móveis</p>
           </Categories>
           <Banner>
             <ContainerText>

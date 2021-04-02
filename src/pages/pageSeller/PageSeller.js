@@ -8,6 +8,7 @@ import { Textarea } from "@chakra-ui/react";
 import { Grid } from "@chakra-ui/react";
 import { postProducts } from "../../controllers/postProduct";
 import { getProducts } from "../../controllers/getProducts";
+import { delProduct } from "../../controllers/delProduct";
 
 
 export default class PageSeller extends React.Component {
@@ -85,6 +86,12 @@ export default class PageSeller extends React.Component {
   getProducts = async() => {
       const response  = await getProducts()
       this.setState({ products: response })
+  }
+
+  delProduct = async(id) => {
+      const response = await delProduct(id)
+      response === 200 ? alert("Produto excluído com sucesso!") 
+                       : alert("Algum erro ocorreu, não conseguimos excluir o seu produto, tente novamente.")
   }
 
   render() {
@@ -187,16 +194,16 @@ export default class PageSeller extends React.Component {
         </ProductRegistration>
         <ProductsList>
           <TitleH2>Produtos cadastrados</TitleH2>
-            {this.state.products.map((products) => { 
+            {this.state.products.map((product) => { 
               return(
                 <Products>
                   <Grid templateColumns="400px 20px" justifyContent="center">
-                  {products.name}
+                  {product.name}
                   <Button
+                  onClick={() => this.delProduct(product.id)}
                   bg="brand.vermelho"
                   color="#FFFFFF"
                   size="xs"
-                  width="5%"
                   _hover={{ bg: "#F56565" }}
                   alignSelf="center">
                   x

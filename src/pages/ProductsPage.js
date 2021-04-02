@@ -125,7 +125,7 @@ export default class ProductsPage extends React.Component {
     inputMin: "",
     inputMax: "",
     selectOrder: "",
-    selectCategory: '',
+    selectCategory: "",
     product: [],
   };
 
@@ -145,31 +145,55 @@ export default class ProductsPage extends React.Component {
     this.setState({ inputMax: e.target.value });
   };
   handleOrder = (e) => {
-
-    this.setState({ selectOrder: e.target.value })
-  }
+    this.setState({ selectOrder: e.target.value });
+  };
   changingCategory = (category) => {
-    this.setState({ selectCategory: category })
-  }
+    this.setState({ selectCategory: category });
+  };
 
+  orderProducts = (array) => {
+    switch (this.state.selectOrder) {
+      case "nome":
+        return array.sort((a, b) => {
+          return a.name.localeCompare(b.name);
+        });
+      case "maior":
+        return array.sort((a, b) => {
+          return Number(b.price) - Number(a.price);
+        });
+
+      case "menor":
+        return array.sort((a, b) => {
+          console.log(Number(b.price));
+          return Number(a.price) - Number(b.price);
+        });
+      default:
+        return array;
+    }
+  };
 
   render() {
-    console.log(this.changingCategory)
-    const filtering = this.state.product.filter((item) => {
-      if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')) {
-        return true
+    const filtering = this.orderProducts(this.state.product).filter((item) => {
+      if (
+        (item.price >= this.state.inputMin || this.state.inputMin === "") &&
+        (item.price <= this.state.inputMax || this.state.inputMax === "")
+      ) {
+        return true;
       } else {
         return false;
       }
     });
 
     const filterByCategory = filtering.filter((item) => {
-      if (item.category === this.state.selectCategory || this.state.selectCategory === '') {
-        return true
+      if (
+        item.category === this.state.selectCategory ||
+        this.state.selectCategory === ""
+      ) {
+        return true;
       } else {
-        return false
+        return false;
       }
-    })
+    });
 
     const listProducts = filterByCategory.map((item) => {
       return (
@@ -179,22 +203,29 @@ export default class ProductsPage extends React.Component {
           name={item.name}
           price={item.price}
         />
-      )
-    })
-
+      );
+    });
 
     return (
       <ChakraProvider theme={theme}>
         <Main>
           <Categories>
-            <p onClick={() => this.changingCategory('')}>Todas</p>
-            <p onClick={() => this.changingCategory('moda feminina')}>Moda feminina</p>
-            <p onClick={() => this.changingCategory('moda masculina')}>Moda masculina</p>
-            <p onClick={() => this.changingCategory('moda infantil')}>Moda infantil</p>
-            <p onClick={() => this.changingCategory('calçados')}>Calçados</p>
-            <p onClick={() => this.changingCategory('eletrônicos')}>Eletrônicos</p>
-            <p onClick={() => this.changingCategory('decoração')}>Decoração</p>
-            <p onClick={() => this.changingCategory('móveis')}>Móveis</p>
+            <p onClick={() => this.changingCategory("")}>Todas</p>
+            <p onClick={() => this.changingCategory("moda feminina")}>
+              Moda feminina
+            </p>
+            <p onClick={() => this.changingCategory("moda masculina")}>
+              Moda masculina
+            </p>
+            <p onClick={() => this.changingCategory("moda infantil")}>
+              Moda infantil
+            </p>
+            <p onClick={() => this.changingCategory("calçados")}>Calçados</p>
+            <p onClick={() => this.changingCategory("eletrônicos")}>
+              Eletrônicos
+            </p>
+            <p onClick={() => this.changingCategory("decoração")}>Decoração</p>
+            <p onClick={() => this.changingCategory("móveis")}>Móveis</p>
           </Categories>
           <Banner>
             <ContainerText>
@@ -243,17 +274,14 @@ export default class ProductsPage extends React.Component {
               />
             </Filter>
             <OrderSelect onChange={this.handleOrder}>
-              <option value={null}>ORDENAR POR</option>
+              <option value={""}>ORDENAR POR</option>
               <option value={"maior"}>MAIOR PREÇO</option>
-              <option value={"menor"}>MAIOR MENOR</option>
+              <option value={"menor"}>MENOR PREÇO</option>
+              <option value={"nome"}>NOME</option>
             </OrderSelect>
           </ContainerFilters>
 
-          <ContainerProducts>
-            {listProducts}
-
-          </ContainerProducts>
-
+          <ContainerProducts>{listProducts}</ContainerProducts>
         </Main>
       </ChakraProvider>
     );

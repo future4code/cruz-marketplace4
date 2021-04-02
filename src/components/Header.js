@@ -55,26 +55,6 @@ const SearchBox = styled.input`
   }
 `;
 
-const ButtonSearch = styled.button`
-  display: flex;
-  align-items: center;
-
-  padding: 0.5rem;
-  background-color: #fad487;
-  border: none;
-
-  &:focus {
-    outline: none;
-    border: 0 none;
-    box-shadow: 0 0 0 0;
-  }
-  &:hover {
-    opacity: 0.8;
-  }
-  &:active {
-    opacity: 0.5;
-  }
-`;
 
 export default class Header extends React.Component {
   render() {

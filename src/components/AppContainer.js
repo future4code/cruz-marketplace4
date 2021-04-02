@@ -81,10 +81,15 @@ export class AppContainer extends Component {
   state = {
     page: 1,
     listProducts: [],
+    inputSearch: ""
   };
 
   onClickChangePage = (numPage) => {
     this.setState({ page: numPage });
+  };
+
+  handleSearch = (e) => {
+    this.setState({ inputSearch: e.target.value });
   };
 
   addShoppingCart = (productToBuy) => {
@@ -142,11 +147,13 @@ export class AppContainer extends Component {
       <ChakraProvider theme={theme}>
         <Container>
           <Header
+            inputSearch={this.state.inputSearch}
+            handleSearch={this.handleSearch}
             deleteProductShoppingCart={this.deleteProductShoppingCart}
             listProducts={this.state.listProducts}
             onClickChangePage={this.onClickChangePage}
           />
-          {this.state.page === 1 && <ProductsPage />}
+          {this.state.page === 1 && <ProductsPage inputSearch={this.state.inputSearch} />}
           {this.state.page === 2 && <PageSeller />}
           <Footer />
         </Container>

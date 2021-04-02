@@ -4,6 +4,7 @@ import { extendTheme, Button, ChakraProvider } from "@chakra-ui/react";
 import imageBanner from "../img/banner.jpg";
 import CardProduct from "../components/CardProduct/CardProduct";
 import { getProducts } from "../controllers/getProducts";
+import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 const theme = extendTheme({
   colors: {
@@ -161,7 +162,6 @@ export default class ProductsPage extends React.Component {
         return array.sort((a, b) => {
           return Number(b.price) - Number(a.price);
         });
-
       case "menor":
         return array.sort((a, b) => {
           console.log(Number(b.price));
@@ -171,17 +171,21 @@ export default class ProductsPage extends React.Component {
         return array;
     }
   };
-
-  render() {
-    const filtering = this.orderProducts(this.state.product).filter((item) => {
-      if (
-        (item.price >= this.state.inputMin || this.state.inputMin === "") &&
-        (item.price <= this.state.inputMax || this.state.inputMax === "")
-      ) {
-        return true;
-      } else {
-        return false;
+   render() {
+    console.log(this.changingCategory)
+    let filtering = this.state.product
+    filtering = filtering.filter((item) => {
+      if (((Number(item.price)) < this.state.inputMin)){
+        return false
       }
+        return true;
+    });
+
+    filtering = filtering.filter((item) => {
+      if (((Number(item.price)) > this.state.inputMax) && this.state.inputMax){
+        return false
+      }
+        return true;
     });
 
     const filterByCategory = filtering.filter((item) => {
@@ -195,7 +199,14 @@ export default class ProductsPage extends React.Component {
       }
     });
 
-    const listProducts = filterByCategory.map((item) => {
+    const filterByName = filterByCategory.filter((item) => {
+      const itemName = item.name.toLowerCase()
+      const inputSearch = this.props.inputSearch.toLowerCase()
+      
+      return itemName.includes(inputSearch)
+    })
+
+    const listProducts = filterByName.map((item) => {
       return (
         <CardProduct
           photos={item.photos}

@@ -42,7 +42,7 @@ const SearchBox = styled.input`
   padding: 0.5rem 0.8rem;
   width: 15rem;
   background: #fad487;
-  border-radius: 2px;
+  border-radius: 10px;
   font-size: 10pt;
 
   &::-webkit-input-placeholder {
@@ -77,13 +77,6 @@ const ButtonSearch = styled.button`
 `;
 
 export default class Header extends React.Component {
-  state = {
-    inputSearch: "",
-  };
-  handleSearch = (e) => {
-    this.setState({ inputSearch: e.target.value });
-  };
-
   render() {
     return (
       <ChakraProvider theme={theme}>
@@ -92,13 +85,11 @@ export default class Header extends React.Component {
           <ConteinerRight>
             <ContainerSearch>
               <SearchBox
-                value={this.state.inputSearch}
-                onChange={this.handleSearch}
+                value={this.props.inputSearch}
+                onChange={this.props.handleSearch}
                 placeholder={"O que você procura hoje?"}
               />
-              <ButtonSearch>
-                <SearchIcon w={5} h={5} />
-              </ButtonSearch>
+              <SearchIcon w={5} h={5} marginRight="8px" color="#4D4D59 "/>
             </ContainerSearch>
 
             <Carrinho

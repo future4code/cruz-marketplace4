@@ -142,6 +142,7 @@ export default class PageSeller extends React.Component {
           >
             <option value="moda-feminina">Moda feminina</option>
             <option value="moda-masculina">Moda masculina</option>
+            <option value="moda-infantil">Moda infantil</option>
             <option value="calcados">Calçados</option>
             <option value="eletronicos">Eletrônicos</option>
             <option value="decoracao">Decoração</option>

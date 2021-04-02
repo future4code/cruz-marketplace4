@@ -4,7 +4,6 @@ import { extendTheme, Button, ChakraProvider } from "@chakra-ui/react";
 import imageBanner from "../img/banner.jpg";
 import CardProduct from "../components/CardProduct/CardProduct";
 import { getProducts } from "../controllers/getProducts";
-import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 const theme = extendTheme({
   colors: {
@@ -20,15 +19,24 @@ const Main = styled.main`
   align-items: center;
 `;
 const Categories = styled.nav`
-  width: 70vw;
+  width: 80vw;
   height: 7rem;
 
   display: flex;
   align-items: center;
   justify-content: space-around;
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1rem;
 `;
+const Category = styled.p `
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+
+  &:hover{
+    background: rgb(203, 213, 223, 0.7);
+  }
+`
 const Banner = styled.div`
   background-image: url(${imageBanner});
   background-size: 100% 100%;
@@ -121,6 +129,7 @@ const ContainerProducts = styled.div`
   gap: 2rem;
   width: 80vw;
 `;
+
 export default class ProductsPage extends React.Component {
   state = {
     inputMin: "",
@@ -221,22 +230,22 @@ export default class ProductsPage extends React.Component {
       <ChakraProvider theme={theme}>
         <Main>
           <Categories>
-            <p onClick={() => this.changingCategory("")}>Todas</p>
-            <p onClick={() => this.changingCategory("moda-feminina")}>
+            <Category onClick={() => this.changingCategory("")}>Todas</Category>
+            <Category onClick={() => this.changingCategory("moda-feminina")}>
               Moda feminina
-            </p>
-            <p onClick={() => this.changingCategory("moda-masculina")}>
+            </Category>
+            <Category onClick={() => this.changingCategory("moda-masculina")}>
               Moda masculina
-            </p>
-            <p onClick={() => this.changingCategory("moda-infantil")}>
+            </Category>
+            <Category onClick={() => this.changingCategory("moda-infantil")}>
               Moda infantil
-            </p>
-            <p onClick={() => this.changingCategory("calcados")}>Calçados</p>
-            <p onClick={() => this.changingCategory("eletronicos")}>
+            </Category>
+            <Category onClick={() => this.changingCategory("calcados")}>Calçados</Category>
+            <Category onClick={() => this.changingCategory("eletronicos")}>
               Eletrônicos
-            </p>
-            <p onClick={() => this.changingCategory("decoracao")}>Decoração</p>
-            <p onClick={() => this.changingCategory("moveis")}>Móveis</p>
+            </Category>
+            <Category onClick={() => this.changingCategory("decoracao")}>Decoração</Category>
+            <Category onClick={() => this.changingCategory("moveis")}>Móveis</Category>
           </Categories>
           <Banner>
             <ContainerText>

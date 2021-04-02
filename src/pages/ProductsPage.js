@@ -4,6 +4,7 @@ import { extendTheme, Button, ChakraProvider } from "@chakra-ui/react";
 import imageBanner from "../img/banner.jpg";
 import CardProduct from "../components/CardProduct/CardProduct";
 import { getProducts } from "../controllers/getProducts";
+import { faBullseye } from "@fortawesome/free-solid-svg-icons";
 
 const theme = extendTheme({
   colors: {
@@ -152,15 +153,21 @@ export default class ProductsPage extends React.Component {
     this.setState({ selectCategory: category })
   }
 
-
   render() {
     console.log(this.changingCategory)
-    const filtering = this.state.product.filter((item) => {
-      if ((item.price >= this.state.inputMin || this.state.inputMin === '') && (item.price <= this.state.inputMax || this.state.inputMax === '')) {
-        return true
-      } else {
-        return false;
+    let filtering = this.state.product
+    filtering = filtering.filter((item) => {
+      if (((Number(item.price)) < this.state.inputMin)){
+        return false
       }
+        return true;
+    });
+
+    filtering = filtering.filter((item) => {
+      if (((Number(item.price)) > this.state.inputMax) && this.state.inputMax){
+        return false
+      }
+        return true;
     });
 
     const filterByCategory = filtering.filter((item) => {
@@ -171,7 +178,14 @@ export default class ProductsPage extends React.Component {
       }
     })
 
-    const listProducts = filterByCategory.map((item) => {
+    const filterByName = filterByCategory.filter((item) => {
+      const itemName = item.name.toLowerCase()
+      const inputSearch = this.props.inputSearch.toLowerCase()
+      
+      return itemName.includes(inputSearch)
+    })
+
+    const listProducts = filterByName.map((item) => {
       return (
         <CardProduct
           photos={item.photos}
@@ -181,7 +195,6 @@ export default class ProductsPage extends React.Component {
         />
       )
     })
-
 
     return (
       <ChakraProvider theme={theme}>
@@ -245,7 +258,7 @@ export default class ProductsPage extends React.Component {
             <OrderSelect onChange={this.handleOrder}>
               <option value={null}>ORDENAR POR</option>
               <option value={"maior"}>MAIOR PREÇO</option>
-              <option value={"menor"}>MAIOR MENOR</option>
+              <option value={"menor"}>MENOR PREÇO</option>
             </OrderSelect>
           </ContainerFilters>
 

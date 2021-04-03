@@ -55,7 +55,6 @@ const SearchBox = styled.input`
   }
 `;
 
-
 export default class Header extends React.Component {
   render() {
     return (
@@ -69,7 +68,7 @@ export default class Header extends React.Component {
                 onChange={this.props.handleSearch}
                 placeholder={"O que você procura hoje?"}
               />
-              <SearchIcon w={5} h={5} marginRight="8px" color="#4D4D59 "/>
+              <SearchIcon w={5} h={5} marginRight="8px" color="#4D4D59 " />
             </ContainerSearch>
 
             <Carrinho
@@ -78,7 +77,11 @@ export default class Header extends React.Component {
             />
 
             <Button
-              onClick={() => this.props.onClickChangePage(2)}
+              onClick={() =>
+                this.props.page === 1
+                  ? this.props.onClickChangePage(2)
+                  : this.props.onClickChangePage(1)
+              }
               bg="brand.100"
               size="sm"
               color="white"
@@ -91,7 +94,7 @@ export default class Header extends React.Component {
                 boxShadow: "0 0 1px 2px #a03030, 0 1px 1px rgba(0, 0, 0, .15)",
               }}
             >
-              QUERO VENDER
+              {this.props.page === 1 ? "QUERO VENDER" : "HOME"}
             </Button>
           </ConteinerRight>
         </Container>

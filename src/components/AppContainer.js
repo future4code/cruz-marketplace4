@@ -103,6 +103,7 @@ export class AppContainer extends Component {
             deleteProductShoppingCart={this.deleteProductShoppingCart}
             listProducts={this.state.listProducts}
             onClickChangePage={this.onClickChangePage}
+            page={this.state.page}
           />
           {this.state.page === 1 && (
             <ProductsPage inputSearch={this.state.inputSearch} />

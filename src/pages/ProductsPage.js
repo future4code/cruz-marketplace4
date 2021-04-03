@@ -28,15 +28,15 @@ const Categories = styled.nav`
   font-weight: 500;
   font-size: 1rem;
 `;
-const Category = styled.p `
+const Category = styled.p`
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 5px;
 
-  &:hover{
+  &:hover {
     background: rgb(203, 213, 223, 0.7);
   }
-`
+`;
 const Banner = styled.div`
   background-image: url(${imageBanner});
   background-size: 100% 100%;
@@ -180,21 +180,20 @@ export default class ProductsPage extends React.Component {
         return array;
     }
   };
-   render() {
-    console.log(this.changingCategory)
-    let filtering = this.state.product
+  render() {
+    let filtering = this.orderProducts(this.state.product);
     filtering = filtering.filter((item) => {
-      if (((Number(item.price)) < this.state.inputMin)){
-        return false
+      if (Number(item.price) < this.state.inputMin) {
+        return false;
       }
-        return true;
+      return true;
     });
 
     filtering = filtering.filter((item) => {
-      if (((Number(item.price)) > this.state.inputMax) && this.state.inputMax){
-        return false
+      if (Number(item.price) > this.state.inputMax && this.state.inputMax) {
+        return false;
       }
-        return true;
+      return true;
     });
 
     const filterByCategory = filtering.filter((item) => {
@@ -209,11 +208,11 @@ export default class ProductsPage extends React.Component {
     });
 
     const filterByName = filterByCategory.filter((item) => {
-      const itemName = item.name.toLowerCase()
-      const inputSearch = this.props.inputSearch.toLowerCase()
-      
-      return itemName.includes(inputSearch)
-    })
+      const itemName = item.name.toLowerCase();
+      const inputSearch = this.props.inputSearch.toLowerCase();
+
+      return itemName.includes(inputSearch);
+    });
 
     const listProducts = filterByName.map((item) => {
       return (
@@ -240,38 +239,46 @@ export default class ProductsPage extends React.Component {
             <Category onClick={() => this.changingCategory("moda-infantil")}>
               Moda infantil
             </Category>
-            <Category onClick={() => this.changingCategory("calcados")}>Calçados</Category>
+            <Category onClick={() => this.changingCategory("calcados")}>
+              Calçados
+            </Category>
             <Category onClick={() => this.changingCategory("eletronicos")}>
               Eletrônicos
             </Category>
-            <Category onClick={() => this.changingCategory("decoracao")}>Decoração</Category>
-            <Category onClick={() => this.changingCategory("moveis")}>Móveis</Category>
+            <Category onClick={() => this.changingCategory("decoracao")}>
+              Decoração
+            </Category>
+            <Category onClick={() => this.changingCategory("moveis")}>
+              Móveis
+            </Category>
           </Categories>
-          <Banner>
-            <ContainerText>
-              <Discount>50%</Discount>
-              <Text1>de desconto</Text1>
-              <Text2>na moda infantil</Text2>
-            </ContainerText>
-            <ContainerButton>
-              <Button
-                bg="brand.100"
-                size="sm"
-                color="white"
-                _hover={{ bg: "#ED8936" }}
-                _active={{
-                  bg: "#F6AD55",
-                  transform: "scale(0.98)",
-                }}
-                _focus={{
-                  boxShadow:
-                    "0 0 1px 2px #DD6B20, 0 1px 1px rgba(0, 0, 0, .15)",
-                }}
-              >
-                VEJA AQUI
-              </Button>
-            </ContainerButton>
-          </Banner>
+          {!this.props.inputSearch && (
+            <Banner>
+              <ContainerText>
+                <Discount>50%</Discount>
+                <Text1>de desconto</Text1>
+                <Text2>na moda infantil</Text2>
+              </ContainerText>
+              <ContainerButton>
+                <Button
+                  bg="brand.100"
+                  size="sm"
+                  color="white"
+                  _hover={{ bg: "#ED8936" }}
+                  _active={{
+                    bg: "#F6AD55",
+                    transform: "scale(0.98)",
+                  }}
+                  _focus={{
+                    boxShadow:
+                      "0 0 1px 2px #DD6B20, 0 1px 1px rgba(0, 0, 0, .15)",
+                  }}
+                >
+                  VEJA AQUI
+                </Button>
+              </ContainerButton>
+            </Banner>
+          )}
 
           <ContainerFilters>
             <Filter>

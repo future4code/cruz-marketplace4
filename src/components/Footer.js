@@ -25,6 +25,7 @@ const FooterStyle = styled.footer`
   justify-content: center;
   text-align: center;
   background-color: #f1bf63;
+  margin-top: 50px;
 `;
 
 const ImgLogo = styled.img`

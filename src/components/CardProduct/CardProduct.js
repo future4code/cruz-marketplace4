@@ -6,27 +6,27 @@ import {Box, Image} from '@chakra-ui/react'
 export default class CardProduto extends Component {
   render() {
     return (
-      <Box 
-      maxW="sm" 
-      borderWidth="1px" 
-      borderRadius="lg" 
+      <Box
+      maxW="sm"
+      borderWidth="1px"
+      borderRadius="lg"
       overflow="hidden"
+      boxShadow="2px 2px 5px #B2926C"
       >
-        <Image 
-          src={this.props.photos} 
+        <Image
+          src={this.props.photos}
           alt={this.props.alt}
-          // boxSize="100%"
-          margin="0 auto"
-          width="50%"
+          boxSize="100%"
+          height="35vh"
         />
 
         <Box
-          p="6" 
+          p="10"
           display="flex"
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
-          
+
         >
           <Box
             mt="1"
@@ -40,16 +40,19 @@ export default class CardProduto extends Component {
             {this.props.name}
           </Box>
 
-          <Box textAlign="center">
+          <Box 
+            textAlign="center"
+            margin="2px 0"
+          >
             R$ {this.props.price}
           </Box>
 
           <Box
-            as="button" 
-            borderRadius="md" 
-            bg="tomato" 
-            color="white" 
-            px={4} 
+            as="button"
+            borderRadius="md"
+            bg="tomato"
+            color="white"
+            px={4}
             h={8}
           >
             Saiba Mais

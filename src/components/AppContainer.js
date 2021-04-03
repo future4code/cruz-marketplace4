@@ -22,7 +22,7 @@ const theme = extendTheme({
 const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  background-color: #fffcef;
+  background-color: #FFFCEF;
 `;
 
 export class AppContainer extends Component {

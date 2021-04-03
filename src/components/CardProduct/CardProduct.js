@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {Box, Image} from '@chakra-ui/react'
 
 
-
 export default class CardProduto extends Component {
   render() {
     return (
@@ -13,7 +12,13 @@ export default class CardProduto extends Component {
       borderRadius="lg" 
       overflow="hidden"
       >
-        <Image src={this.props.photos} alt={this.props.alt} />
+        <Image 
+          src={this.props.photos} 
+          alt={this.props.alt}
+          // boxSize="100%"
+          margin="0 auto"
+          width="50%"
+        />
 
         <Box
           p="6" 

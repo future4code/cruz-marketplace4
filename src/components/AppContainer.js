@@ -103,7 +103,9 @@ export class AppContainer extends Component {
             page={this.state.page}
           />
           {this.state.page === 1 && (
-            <ProductsPage inputSearch={this.state.inputSearch} />
+            <ProductsPage
+            adicionarproduto={this.addShoppingCart}
+            inputSearch={this.state.inputSearch} />
           )}
           {this.state.page === 2 && <PageSeller />}
           <Footer />

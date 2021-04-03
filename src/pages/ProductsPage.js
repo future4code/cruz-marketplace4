@@ -220,6 +220,12 @@ export default class ProductsPage extends React.Component {
           alt={item.alt}
           name={item.name}
           price={item.price}
+          description={item.description}
+          paymentMethod={item.paymentMethod}
+          installments={item.installments}
+          category={item.category}
+          product={item}
+          adicionarproduto={this.props.adicionarproduto}
         />
       );
     });

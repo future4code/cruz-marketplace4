@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import {Box, Image} from '@chakra-ui/react'
-
+import Informacoes from './Informacoes'
 
 export default class CardProduto extends Component {
   render() {
@@ -47,15 +47,16 @@ export default class CardProduto extends Component {
             R$ {this.props.price}
           </Box>
 
-          <Box
-            as="button"
-            borderRadius="md"
-            bg="tomato"
-            color="white"
-            px={4}
-            h={8}
-          >
-            Saiba Mais
+          <Box>
+            <Informacoes 
+            descricao={this.props.description}
+            metododepagamento={this.props.paymentMethod}
+            categoria={this.props.category}
+            parcelamento={this.props.installments}
+            item={this.props.product}
+            preco={this.props.price}
+            adicionarproduto={this.props.adicionarproduto}
+            />
           </Box>
         </Box>
       </Box>
